@@ -1,0 +1,12 @@
+# date: 2026-10-10T17:38:04+0200
+# commit: 123a236 (working tree differs from it; see sha256 line)
+# sha256 src/threefry_mod.f90: 936d663d2827c6e1
+# machine: Apple M1 Pro, Darwin arm64
+# compiler: GNU Fortran (Homebrew GCC 16.2.0) 16.2.0
+# flags: -O2
+# clock GHz: 3.115
+# columns: label|ns per call|checksum
+threefry2x32 latency|23.025|8DF844FB
+threefry2x32 throughput|11.642|6D05B682
+threefry2x32_r latency|36.728|8DF844FB
+empty call latency|2.196|0

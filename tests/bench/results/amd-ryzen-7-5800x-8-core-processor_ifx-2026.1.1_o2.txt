@@ -1,0 +1,12 @@
+# date: 2026-10-10T15:38:19+0000
+# commit: 123a236 (working tree differs from it; see sha256 line)
+# sha256 src/threefry_mod.f90: 936d663d2827c6e1
+# machine: AMD Ryzen 7 5800X 8-Core Processor, Linux x86_64, Rocky Linux 9.8 (Blue Onyx)
+# compiler: ifx (IFX) 2026.1.1 20260724
+# flags: -O2
+# clock GHz: 4.833
+# columns: label|ns per call|checksum
+threefry2x32 latency|10.137|8DF844FB
+threefry2x32 throughput|6.826|6D05B682
+threefry2x32_r latency|35.762|8DF844FB
+empty call latency|.827|0

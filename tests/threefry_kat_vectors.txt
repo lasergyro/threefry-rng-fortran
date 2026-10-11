@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: 2010-2012 D. E. Shaw Research
+# SPDX-License-Identifier: BSD-3-Clause
+# The threefry2x32 rows of Random123 v1.14.0 tests/kat_vectors; see LICENSE.
+# https://github.com/DEShawResearch/random123/blob/v1.14.0/tests/kat_vectors
+#
+# For each generator, we test:  gen(0, 0), gen(fff, fff) and gen(ctr=digits_of_pi, key=more_digits_of_pi).
+# Ignoring endianness, these are the first few hexdigits of pi:
+# 243F6A88 85A308D3 13198A2E 03707344 A4093822 299F31D0 082EFA98 EC4E6C89 452821E6 38D01377 BE5466CF 34E90C6C C0AC29B7 C97C50DD 3F84D5B5 B5470917 9216D5D9 8979FB1BD
+#
+#nameNxW  R  CTR                                 KEY                                   EXPECTED
+#
+# also test AESNI with the test vector from FIPS197
+#
+#
+#
+#
+#
+#
+threefry2x32 13 00000000 00000000 00000000 00000000 9d1c5ec6 8bd50731
+threefry2x32 13 ffffffff ffffffff ffffffff ffffffff fd36d048 2d17272c
+threefry2x32 13 243f6a88 85a308d3 13198a2e 03707344 ba3e4725 f27d669e
+threefry2x32 20 00000000 00000000 00000000 00000000   6b200159 99ba4efe
+threefry2x32 20 ffffffff ffffffff ffffffff ffffffff   1cb996fc bb002be7
+threefry2x32 20 243f6a88 85a308d3 13198a2e 03707344   c4923a9c 483df7a0
+threefry2x32 32 00000000 00000000 00000000 00000000 cee3d47e a23dfd5c
+threefry2x32 32 ffffffff ffffffff ffffffff ffffffff 6e2fe0d0 b1b76f82
+threefry2x32 32 243f6a88 85a308d3 13198a2e 03707344 e2827716 c3c05cdf
+#
+#
+#

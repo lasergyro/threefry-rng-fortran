@@ -1,0 +1,15 @@
+*.mod
+*.o
+*.so
+build/
+
+*.egg-info/
+__pycache__/
+.pixi/
+.pytest_cache
+
+external/
+scripts/
+docs/
+.vscode
+.ruff_cache

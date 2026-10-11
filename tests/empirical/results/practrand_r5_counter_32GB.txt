@@ -1,0 +1,52 @@
+# date: 2026-10-10T19:20:22+0200
+# sha256 src/threefry_mod.f90: 85557f4d671589e3
+# sha256 tests/empirical/threefry_dump.f90: 432f2f10509a31e7
+# compiler: GNU Fortran (Homebrew GCC 16.2.0) 16.2.0, -O3
+# tool: PractRand 0.95 (git 93cebb5)
+# machine: Apple M1 Pro, Darwin arm64
+# command: threefry_dump 1125899906842624 - counter 5 | RNG_test stdin32 -tlmin 1MB -tlmax 32GB -multithreaded
+RNG_test using PractRand version 0.95
+RNG = RNG_stdin32, seed = unknown
+test set = core, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=unknown
+length= 1 megabyte (2^20 bytes), time= 0.1 seconds
+  Test Name                         Raw       Processed     Evaluation
+  BCFN(2+0,13-7,T)                  R=+787.3  p =  1.9e-237   FAIL !!!!!!    
+  BCFN(2+1,13-7,T)                  R=+672.0  p =  9.2e-203   FAIL !!!!!!    
+  BCFN(2+2,13-8,T)                  R=+609.0  p =  1.6e-155   FAIL !!!!!     
+  BCFN(2+3,13-8,T)                  R=+460.1  p =  1.0e-117   FAIL !!!!!     
+  BCFN(2+4,13-8,T)                  R=+484.2  p =  7.7e-124   FAIL !!!!!     
+  BCFN(2+5,13-9,T)                  R=+274.8  p =  7.2e-63    FAIL !!!!      
+  BCFN(2+6,13-9,T)                  R=+154.2  p =  9.0e-36    FAIL !!!       
+  DC6-9x1Bytes-1                    R= +62.0  p =  1.6e-35    FAIL !!!       
+  Gap-16:A                          R=+178.5  p =  1.3e-144   FAIL !!!!!     
+  Gap-16:B                          R=+170.7  p =  5.9e-130   FAIL !!!!!     
+  FPF-14+6/16:all                   R=  -6.5  p =1-1.0e-5   mildly suspicious
+  BRank(12):128(2)                  R=+129.5  p~=  5.1e-40    FAIL !!!       
+  BRank(12):256(1)                  R=+540.3  p~=  1.1e-163   FAIL !!!!!     
+  [Low8/32]BCFN(2+0,13-8,T)         R= +1784  p =  8.2e-454   FAIL !!!!!!!   
+  [Low8/32]BCFN(2+1,13-8,T)         R= +1615  p =  6.3e-411   FAIL !!!!!!!   
+  [Low8/32]BCFN(2+2,13-9,T)         R=+974.1  p =  5.4e-220   FAIL !!!!!!    
+  [Low8/32]BCFN(2+3,13-9,T)         R=+656.8  p =  1.0e-148   FAIL !!!!!     
+  [Low8/32]BCFN(2+4,13-9,T)         R= +1166  p =  4.9e-263   FAIL !!!!!!    
+  [Low8/32]DC6-9x1Bytes-1           R=+483.1  p =  1.9e-279   FAIL !!!!!!    
+  [Low8/32]Gap-16:A                 R= +1905  p =  7e-1525    FAIL !!!!!!!!  
+  [Low8/32]Gap-16:B                 R= +2760  p =  4e-2141    FAIL !!!!!!!!  
+  [Low8/32]BRank(12):128(2)         R=+870.6  p~=  4.2e-263   FAIL !!!!!!    
+  [Low8/32]mod3n(5):(0,9-6)         R= +24.0  p =  4.7e-9   very suspicious  
+  [Low1/32]BCFN(2+0,13-9,T)         R= +8373  p =  9e-1951    FAIL !!!!!!!!  
+  [Low1/32]DC6-9x1Bytes-1           R=+11241  p =  1e-5556    FAIL !!!!!!!!  
+  [Low1/32]Gap-16:A                 R= +7928  p =  4e-6432    FAIL !!!!!!!!  
+  [Low1/32]Gap-16:B                 R=+12885  p =  2e-9844    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:(0,14-8)     R= +6056  p =  7e-4358    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:(1,14-8)     R= +3565  p =  9e-2566    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:(3,14-10)    R= +4647  p =  1e-2472    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:(5,14-11)    R=+157.5  p =  1.7e-69    FAIL !!!!      
+  [Low1/32]FPF-14+6/16:all          R= +8490  p =  4e-5612    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:cross        R= +2525  p =  2e-1634    FAIL !!!!!!!!  
+  [Low1/32]mod3n(5):(0,9-6)         R=+641.1  p =  5.3e-215   FAIL !!!!!!    
+  [Low1/32]mod3n(5):(1,9-6)         R=+226.4  p =  1.8e-76    FAIL !!!!      
+  [Low1/32]mod3n(5):(2,9-6)         R= +86.8  p =  8.0e-30    FAIL !!!       
+  ...and 38 test result(s) without anomalies
+

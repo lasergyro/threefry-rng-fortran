@@ -1,0 +1,38 @@
+# date: 2026-10-10T19:20:23+0200
+# sha256 src/threefry_mod.f90: 85557f4d671589e3
+# sha256 tests/empirical/threefry_dump.f90: 432f2f10509a31e7
+# compiler: GNU Fortran (Homebrew GCC 16.2.0) 16.2.0, -O3
+# tool: PractRand 0.95 (git 93cebb5)
+# machine: Apple M1 Pro, Darwin arm64
+# command: threefry_dump 1125899906842624 - key 6 | RNG_test stdin32 -tlmin 1MB -tlmax 32GB -multithreaded
+RNG_test using PractRand version 0.95
+RNG = RNG_stdin32, seed = unknown
+test set = core, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=unknown
+length= 1 megabyte (2^20 bytes), time= 0.1 seconds
+  Test Name                         Raw       Processed     Evaluation
+  BRank(12):256(1)                  R= +37.2  p~=  3.0e-12   VERY SUSPICIOUS 
+  [Low8/32]BCFN(2+0,13-8,T)         R= +85.1  p =  1.5e-22    FAIL !!        
+  [Low8/32]BCFN(2+1,13-8,T)         R= +26.2  p =  1.4e-7   very suspicious  
+  [Low8/32]BCFN(2+2,13-9,T)         R= +15.0  p =  1.7e-4   unusual          
+  [Low8/32]DC6-9x1Bytes-1           R= +41.8  p =  5.8e-24    FAIL !!        
+  [Low8/32]Gap-16:A                 R=+177.7  p =  4.6e-142   FAIL !!!!!     
+  [Low8/32]Gap-16:B                 R= +20.1  p =  1.1e-15    FAIL !         
+  [Low8/32]FPF-14+6/16:all          R=  -6.3  p =1-2.2e-5   mildly suspicious
+  [Low1/32]BCFN(2+0,13-9,T)         R=+335.2  p =  4.6e-79    FAIL !!!!      
+  [Low1/32]DC6-9x1Bytes-1           R= +2752  p =  1e-1360    FAIL !!!!!!!!  
+  [Low1/32]Gap-16:A                 R= +3991  p =  2e-3237    FAIL !!!!!!!!  
+  [Low1/32]Gap-16:B                 R= +6553  p =  7e-5007    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:(0,14-8)     R= +2981  p =  3e-2145    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:(1,14-8)     R= +1494  p =  5e-1075    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:(2,14-9)     R= +1386  p =  1.0e-872   FAIL !!!!!!!   
+  [Low1/32]FPF-14+6/16:(3,14-10)    R= +20.8  p =  1.2e-11   VERY SUSPICIOUS 
+  [Low1/32]FPF-14+6/16:(4,14-11)    R= +14.2  p =  5.0e-7   unusual          
+  [Low1/32]FPF-14+6/16:(5,14-11)    R= +13.3  p =  1.2e-6   unusual          
+  [Low1/32]FPF-14+6/16:all          R= +3388  p =  2e-2239    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:cross        R=+980.4  p =  3.7e-635   FAIL !!!!!!!   
+  [Low1/32]mod3n(5):(0,9-6)         R= +99.6  p =  4.2e-34    FAIL !!!       
+  [Low1/32]mod3n(5):(1,9-6)         R= +39.9  p =  3.7e-14    FAIL           
+  ...and 54 test result(s) without anomalies
+

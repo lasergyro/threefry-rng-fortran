@@ -1,0 +1,33 @@
+name = "threefry-rng"
+version = "0.1.0"
+license = "BSD-3-Clause"
+author = "Miguel Amaral"
+maintainer = "Miguel Amaral"
+copyright = "Copyright (c) 2010-2012, D. E. Shaw Research; Copyright (c) 2026, Miguel Amaral"
+description = "Threefry-2x32 counter-based pseudorandom function in portable Fortran 95"
+
+# The library is the generator alone: src/threefry_mod.f90. Another fpm
+# project gets it with, in its own fpm.toml,
+#   [dependencies]
+#   threefry-rng = { git = "<this repository's URL>" }
+# and then `use threefry_mod`.
+[library]
+source-dir = "src"
+
+# Tests and examples are built with plain gfortran (see README.md), not
+# discovered by fpm: tests/ holds several
+# programs plus external tools under tests/empirical/, and fpm's default
+# directory names are test/ and example/.
+[build]
+auto-executables = false
+auto-tests = false
+auto-examples = false
+
+# fortitude (pixi run lint) reads its settings from here.
+[extra.fortitude.check]
+line-length = 132   # the Fortran standard's limit
+target-std = "f95"  # the core; the tests use a few Fortran 2008 features
+ignore = [
+  "S241",    # single vs double quotes: style only
+  "MOD011",  # suggests [ ] array constructors, which are Fortran 2003
+]

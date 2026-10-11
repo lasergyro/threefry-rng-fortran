@@ -1,0 +1,40 @@
+# date: 2026-10-10T19:20:25+0200
+# sha256 src/threefry_mod.f90: 85557f4d671589e3
+# sha256 tests/empirical/threefry_dump.f90: 432f2f10509a31e7
+# compiler: GNU Fortran (Homebrew GCC 16.2.0) 16.2.0, -O3
+# tool: PractRand 0.95 (git 93cebb5)
+# machine: Apple M1 Pro, Darwin arm64
+# command: threefry_dump 1125899906842624 - counter 8 | RNG_test stdin32 -tlmin 1MB -tlmax 32GB -multithreaded
+RNG_test using PractRand version 0.95
+RNG = RNG_stdin32, seed = unknown
+test set = core, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=unknown
+length= 1 megabyte (2^20 bytes), time= 0.1 seconds
+  no anomalies in 76 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 2 megabytes (2^21 bytes), time= 0.3 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]FPF-14+6/16:all          R=  +9.0  p =  4.2e-6   suspicious       
+  ...and 87 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=unknown
+length= 4 megabytes (2^22 bytes), time= 0.5 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]BCFN(2+0,13-9,T)         R= +14.6  p =  2.1e-4   unusual          
+  [Low1/32]DC6-9x1Bytes-1           R=  +7.7  p =  4.2e-4   mildly suspicious
+  [Low1/32]FPF-14+6/16:(0,14-6)     R=  +8.0  p =  3.6e-6   unusual          
+  [Low1/32]FPF-14+6/16:all          R= +12.1  p =  2.8e-9    VERY SUSPICIOUS 
+  ...and 95 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=unknown
+length= 8 megabytes (2^23 bytes), time= 0.9 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]BCFN(2+0,13-8,T)         R= +36.1  p =  4.2e-10   VERY SUSPICIOUS 
+  [Low1/32]DC6-9x1Bytes-1           R= +20.1  p =  2.0e-11    FAIL           
+  [Low1/32]Gap-16:B                 R=  +5.5  p =  2.6e-4   unusual          
+  [Low1/32]FPF-14+6/16:(0,14-5)     R= +10.4  p =  1.8e-8   suspicious       
+  [Low1/32]FPF-14+6/16:all          R= +14.4  p =  1.7e-11    FAIL           
+  ...and 103 test result(s) without anomalies
+

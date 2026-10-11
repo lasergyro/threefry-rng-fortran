@@ -1,0 +1,30 @@
+# date: 2026-10-10T19:20:24+0200
+# sha256 src/threefry_mod.f90: 85557f4d671589e3
+# sha256 tests/empirical/threefry_dump.f90: 432f2f10509a31e7
+# compiler: GNU Fortran (Homebrew GCC 16.2.0) 16.2.0, -O3
+# tool: PractRand 0.95 (git 93cebb5)
+# machine: Apple M1 Pro, Darwin arm64
+# command: threefry_dump 1125899906842624 - key 7 | RNG_test stdin32 -tlmin 1MB -tlmax 32GB -multithreaded
+RNG_test using PractRand version 0.95
+RNG = RNG_stdin32, seed = unknown
+test set = core, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=unknown
+length= 1 megabyte (2^20 bytes), time= 0.0 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low8/32]BCFN(2+0,13-8,T)         R= +17.3  p =  2.4e-5   mildly suspicious
+  [Low8/32]BCFN(2+1,13-8,T)         R= +47.7  p =  4.7e-13    FAIL           
+  [Low8/32]BCFN(2+2,13-9,T)         R= +34.7  p =  6.4e-9    VERY SUSPICIOUS 
+  [Low8/32]BCFN(2+3,13-9,T)         R= +42.9  p =  9.3e-11   VERY SUSPICIOUS 
+  [Low8/32]BCFN(2+4,13-9,T)         R= +39.4  p =  5.7e-10   VERY SUSPICIOUS 
+  [Low1/32]BCFN(2+0,13-9,T)         R=+752.2  p =  3.6e-176   FAIL !!!!!!    
+  [Low1/32]DC6-9x1Bytes-1           R=+401.3  p =  1.7e-198   FAIL !!!!!!    
+  [Low1/32]Gap-16:A                 R=+151.9  p =  1.4e-122   FAIL !!!!!     
+  [Low1/32]Gap-16:B                 R=+226.6  p =  5.4e-173   FAIL !!!!!!    
+  [Low1/32]FPF-14+6/16:(0,14-8)     R= +42.6  p =  1.1e-30    FAIL !!!       
+  [Low1/32]FPF-14+6/16:(1,14-8)     R= +21.7  p =  1.1e-15    FAIL           
+  [Low1/32]FPF-14+6/16:(2,14-9)     R= +14.1  p =  3.4e-9   very suspicious  
+  [Low1/32]FPF-14+6/16:all          R= +45.0  p =  1.3e-29    FAIL !!!       
+  [Low1/32]FPF-14+6/16:cross        R= +17.3  p =  5.7e-12    FAIL           
+  ...and 62 test result(s) without anomalies
+

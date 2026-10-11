@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Git pre-commit hook: format the staged Fortran (findent, with FINDENT_FLAGS
+# from pyproject.toml) and Python (ruff format), and re-stage them.
+#
+# A staged file that also has unstaged changes stops the commit untouched:
+# formatting and re-staging it would commit those changes too. Stage it fully,
+# or format it with `pixi run fmt` / `pixi run ruff format`, then commit again.
+#
+# Installed by .githooks/install.sh. Skip once with: git commit --no-verify
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+fortran=() python=() partial=()
+while IFS= read -r -d '' f; do
+  case "$f" in
+    *.f90) fortran+=("$f") ;;
+    *.py) python+=("$f") ;;
+    *) continue ;;
+  esac
+  git diff --quiet -- "$f" || partial+=("$f")
+done < <(git diff --cached --name-only --diff-filter=ACMR -z)
+
+if [ ${#partial[@]} -gt 0 ]; then
+  echo "format hook: these files have unstaged changes; stage them fully or format them yourself:" >&2
+  printf '  %s\n' "${partial[@]}" >&2
+  exit 1
+fi
+
+if [ ${#fortran[@]} -gt 0 ]; then
+  pixi run -q bash -c 'wfindent $FINDENT_FLAGS "$@" > /dev/null' _ "${fortran[@]}"
+  git add -- "${fortran[@]}"
+fi
+if [ ${#python[@]} -gt 0 ]; then
+  pixi run -q ruff format -q "${python[@]}"
+  git add -- "${python[@]}"
+fi
+
+# git has already checked the commit isn't empty; formatting can make it so.
+if git rev-parse -q --verify HEAD > /dev/null && git diff --cached --quiet HEAD; then
+  echo "format hook: nothing left to commit once formatted" >&2
+  exit 1
+fi

@@ -1,0 +1,39 @@
+# date: 2026-10-10T19:20:25+0200
+# sha256 src/threefry_mod.f90: 85557f4d671589e3
+# sha256 tests/empirical/threefry_dump.f90: 432f2f10509a31e7
+# compiler: GNU Fortran (Homebrew GCC 16.2.0) 16.2.0, -O3
+# tool: PractRand 0.95 (git 93cebb5)
+# machine: Apple M1 Pro, Darwin arm64
+# command: threefry_dump 1125899906842624 - key 8 | RNG_test stdin32 -tlmin 1MB -tlmax 32GB -multithreaded
+RNG_test using PractRand version 0.95
+RNG = RNG_stdin32, seed = unknown
+test set = core, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=unknown
+length= 1 megabyte (2^20 bytes), time= 0.1 seconds
+  no anomalies in 76 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 2 megabytes (2^21 bytes), time= 0.3 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]FPF-14+6/16:all          R=  +7.5  p =  4.5e-5   mildly suspicious
+  [Low1/32]FPF-14+6/16:cross        R=  +5.3  p =  2.0e-4   unusual          
+  ...and 86 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=unknown
+length= 4 megabytes (2^22 bytes), time= 0.5 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]FPF-14+6/16:(0,14-6)     R=  +7.8  p =  5.0e-6   unusual          
+  [Low1/32]FPF-14+6/16:all          R=  +9.4  p =  3.9e-7   very suspicious  
+  [Low1/32]FPF-14+6/16:cross        R=  +6.6  p =  2.8e-5   mildly suspicious
+  ...and 96 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=unknown
+length= 8 megabytes (2^23 bytes), time= 0.8 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]DC6-9x1Bytes-1           R=  +6.2  p =  2.3e-3   unusual          
+  [Low1/32]FPF-14+6/16:(0,14-5)     R= +14.1  p =  1.4e-11   VERY SUSPICIOUS 
+  [Low1/32]FPF-14+6/16:all          R= +15.8  p =  1.1e-12    FAIL           
+  [Low1/32]FPF-14+6/16:cross        R= +11.6  p =  5.6e-9    VERY SUSPICIOUS 
+  ...and 104 test result(s) without anomalies
+
